@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { IntervalContext } from "./App";
+import { IntervalContext, OutputContext } from "./App";
 
 const OutputHeader = styled.h2`
   font-size: 0.8em;
@@ -12,12 +12,12 @@ const OutputHeader = styled.h2`
 
 const Output = () => {
   const { intervals } = useContext(IntervalContext);
-
-  let output = "Add an interval to get started!";
+  const { output, setOutput } = useContext(OutputContext);
 
   const validIntervals = intervals.filter(interval => interval.valid);
+  let newOutput = null;
   if (validIntervals.length > 0) {
-    output = validIntervals.reduce((accumulator, interval) => {
+    newOutput = validIntervals.reduce((accumulator, interval) => {
       const {
         hours,
         minutes,
@@ -49,8 +49,11 @@ const Output = () => {
         : `${accumulator}, ${intervalString}`;
     }, "");
   }
+  setOutput(newOutput);
 
-  return <OutputHeader>{output}</OutputHeader>;
+  return (
+    <OutputHeader>{output || "Add an interval to get started!"}</OutputHeader>
+  );
 };
 
 export default Output;

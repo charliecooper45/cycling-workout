@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { IntervalContext } from "./App";
+import { IntervalContext, OutputContext } from "./App";
 import styled from "styled-components";
+import { useClipboard } from "use-clipboard-copy";
 
 const OptionsDiv = styled.div`
   display: grid;
@@ -26,23 +27,34 @@ const AddIntervalButton = styled.button`
 const CopyOutputButton = styled.button`
   min-width: 140px;
   justify-self: start;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 const Options = () => {
   const { dispatch } = useContext(IntervalContext);
+  const { output } = useContext(OutputContext);
+  const clipboard = useClipboard({
+    copiedTimeout: 800
+  });
 
   const handleAddInterval = () =>
     dispatch({
       type: "ADD_INTERVAL"
     });
 
-  // TODO: copy functionality
+  const handleCopyOutput = () => clipboard.copy(output);
+
   return (
     <OptionsDiv>
       <AddIntervalButton onClick={handleAddInterval}>
         ADD INTERVAL
       </AddIntervalButton>
-      <CopyOutputButton>COPY TO CLIPBOARD</CopyOutputButton>
+      <CopyOutputButton disabled={output === null} onClick={handleCopyOutput}>
+        {clipboard.copied ? "COPIED!" : "COPY TO CLIPBOARD"}
+      </CopyOutputButton>
     </OptionsDiv>
   );
 };

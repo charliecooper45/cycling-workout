@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, useState, createContext } from "react";
 import uuid from "uuid/v4";
 import { createGlobalStyle } from "styled-components";
 import Main from "./Main";
@@ -23,7 +23,6 @@ const intervalReducer = (state, action) => {
       return state.filter(interval => interval.id !== action.id);
     case "UPDATE_INTERVAL":
       return state.map(interval => {
-        console.log(interval.id, action.interval.id);
         return interval.id === action.interval.id ? action.interval : interval;
       });
     default:
@@ -32,6 +31,7 @@ const intervalReducer = (state, action) => {
 };
 
 export const IntervalContext = createContext(null);
+export const OutputContext = createContext(null);
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Patua+One&display=swap');
@@ -45,6 +45,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: #231d6e;
+    user-select: none;
   }
 
   #root {
@@ -94,11 +95,14 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
   const [intervals, dispatch] = useReducer(intervalReducer, initialIntervals);
+  const [output, setOutput] = useState(null);
 
   return (
     <IntervalContext.Provider value={{ intervals, dispatch }}>
-      <GlobalStyle />
-      <Main />
+      <OutputContext.Provider value={{ output, setOutput }}>
+        <GlobalStyle />
+        <Main />
+      </OutputContext.Provider>
     </IntervalContext.Provider>
   );
 };

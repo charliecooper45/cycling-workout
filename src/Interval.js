@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { IntervalContext } from "./App";
@@ -77,7 +77,6 @@ const OptionsSpan = styled.span`
   display: grid;
 `;
 
-// TODO: on re-render only re-render if this interval has changed
 const Interval = ({ id }) => {
   const { intervals, dispatch } = useContext(IntervalContext);
 
