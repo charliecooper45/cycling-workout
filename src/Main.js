@@ -14,6 +14,7 @@ const MainDiv = styled.div`
   @media (min-width: 600px) {
     grid-column: 2;
     padding: 0 20px;
+    min-width: 500px;
   }
 `;
 
@@ -22,7 +23,7 @@ const SiteHeader = styled.h1`
   font-size: 1.4em;
 
   @media (min-width: 600px) {
-    font-size: 3em;
+    font-size: 4.5em;
   }
 `;
 

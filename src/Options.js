@@ -17,6 +17,7 @@ const OptionsDiv = styled.div`
 
 const AddIntervalButton = styled.button`
   min-width: 140px;
+  min-height: 40px;
   justify-self: end;
 
   @media (min-width: 600px) {

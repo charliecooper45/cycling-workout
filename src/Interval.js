@@ -10,17 +10,18 @@ const IntervalDiv = styled.div`
   border-radius: 10px;
   display: grid;
   grid-template-columns: auto 4fr auto auto;
-  grid-template-rows: auto 30px;
+  grid-template-rows: auto 40px;
   grid-column-gap: 5px;
   padding: 10px 2px 10px 2px;
 
   input {
     min-width: 30px;
-    font-size: 0.6em;
+    font-size: 1em;
   }
 
   @media (min-width: 600px) {
-    grid-column-gap: 10px;
+    grid-column-gap: 40px;
+    grid-row-gap: 2px;
     padding: 10px 10px 15px 10px;
   }
 `;
@@ -36,7 +37,7 @@ const LabelSpan = styled.span`
   }
 
   @media (min-width: 600px) {
-    font-size: 0.6em;
+    font-size: 1em;
   }
 `;
 
@@ -46,7 +47,7 @@ const TimeSpan = styled.span`
   grid-template-columns: repeat(5, auto);
 
   input {
-    max-width: 40px;
+    max-width: 50px;
   }
 
   span {
@@ -68,8 +69,7 @@ const RepeatsSpan = styled.span`
   display: grid;
 
   input {
-    max-width: 20px;
-    min-width: 30px;
+    max-width: 50px;
   }
 `;
 

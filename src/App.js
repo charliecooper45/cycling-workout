@@ -82,13 +82,13 @@ const GlobalStyle = createGlobalStyle`
     }
     
     button {
-      font-size: .7em;
+      font-size: 0.8em;
     }
   }
   
   @media (min-width: 800px) {
     #root {
-      grid-template-columns: 1fr 700px 1fr;
+      grid-template-columns: 1fr 1000px 1fr;
     }
   }
 `;

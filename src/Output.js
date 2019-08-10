@@ -6,7 +6,7 @@ const OutputHeader = styled.h2`
   font-size: 0.8em;
 
   @media (min-width: 600px) {
-    font-size: 1.4em;
+    font-size: 2em;
   }
 `;
 
@@ -34,16 +34,20 @@ const Output = () => {
 
       let timeOutput = ``;
       if (hours > 0) {
-        timeOutput = timeOutput + `${hours} h `;
+        timeOutput = timeOutput + `${hours}h `;
       }
       if (minutes > 0) {
-        timeOutput = timeOutput + `${minutes} m `;
+        timeOutput = timeOutput + `${minutes}m `;
       }
       if (seconds > 0) {
-        timeOutput = timeOutput + `${seconds} s `;
+        timeOutput = timeOutput + `${seconds}s `;
       }
 
-      const intervalString = `${repeats} x ${timeOutput}@ ${wattsOutput} watts`;
+      const intervalString =
+        repeats === 1
+          ? `${timeOutput}@ ${wattsOutput}w`
+          : `${repeats} x ${timeOutput}@ ${wattsOutput}w`;
+
       return accumulator === ""
         ? intervalString
         : `${accumulator}, ${intervalString}`;
